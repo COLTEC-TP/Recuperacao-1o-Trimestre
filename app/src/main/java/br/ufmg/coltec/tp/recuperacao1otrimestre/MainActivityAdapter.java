@@ -16,11 +16,11 @@ public class MainActivityAdapter extends BaseAdapter {
 
     public MainActivityAdapter(Context context) {
         this.context = context;
-        produtos = new ArrayList<>();
+        ProdutoDAO DAO = ProdutoDAO.getInstance();
+
+        produtos = DAO.getImoveis();
 
         //... carrega dados da lista
-        produtos.add(new Produto("Sabão", "Limpeza", 15.54));
-        produtos.add(new Produto("Escova de dentes", "Higiene", 3.7));
 
     }
 
