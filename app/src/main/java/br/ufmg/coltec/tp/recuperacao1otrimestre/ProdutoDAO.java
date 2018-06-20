@@ -38,6 +38,21 @@ public class ProdutoDAO {
 
     }
 
+
+
+    public ArrayList<Produto> filtrarProdutos(String busca) {
+        ArrayList<Produto> filtrados = new ArrayList<>();
+
+        // TODO implementar ação de filtragem
+
+        for(int i=0;i<produtos.size();i++){
+            if(produtos.get(i).getNome().toLowerCase().contains(busca.toLowerCase()) || produtos.get(i).getCategoria().toLowerCase().contains(busca.toLowerCase())){
+                filtrados.add(produtos.get(i));
+            }
+        }
+        return filtrados;
+    }
+
     /**
      * Adiciona um novo produto na lista
      *
