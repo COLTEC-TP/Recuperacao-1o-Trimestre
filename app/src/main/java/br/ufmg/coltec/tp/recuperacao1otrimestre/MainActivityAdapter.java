@@ -18,7 +18,7 @@ public class MainActivityAdapter extends BaseAdapter {
         this.context = context;
         ProdutoDAO DAO = ProdutoDAO.getInstance();
 
-        produtos = DAO.getImoveis();
+        produtos = DAO.getProdutos();
 
         //... carrega dados da lista
 

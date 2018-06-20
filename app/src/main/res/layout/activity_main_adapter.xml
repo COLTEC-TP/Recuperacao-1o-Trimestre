@@ -16,6 +16,7 @@
         android:layout_toRightOf="@id/imagemProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         />
 
     <TextView
@@ -25,6 +26,7 @@
         android:layout_below="@+id/nomeProduto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         />
     <TextView
         android:layout_alignParentRight="true"

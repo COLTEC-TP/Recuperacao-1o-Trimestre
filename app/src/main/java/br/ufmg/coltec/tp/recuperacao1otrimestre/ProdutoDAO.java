@@ -39,19 +39,19 @@ public class ProdutoDAO {
     }
 
     /**
-     * Adiciona um novo imóvel na lista
+     * Adiciona um novo produto na lista
      *
-     * @param novoProduto imóvel que será adicionado na lista
+     * @param novoProduto produto que será adicionado na lista
      */
-    public void adicionarImovel(Produto novoProduto) {
+    public void adicionarProduto(Produto novoProduto) {
         instance.produtos.add(novoProduto);
     }
 
     /**
-     * Recupera lista completa dos imóveis
-     * @return ArrayList com todos os imóveis cadastrados no DAO
+     * Recupera lista completa dos produtos
+     * @return ArrayList com todos os produtos cadastrados no DAO
      */
-    public ArrayList<Produto> getImoveis() {
+    public ArrayList<Produto> getProdutos() {
         return instance.produtos;
     }
 
