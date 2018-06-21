@@ -2,6 +2,8 @@ package br.ufmg.coltec.tp.recuperacao1otrimestre;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.content.Context;
+
 import android.widget.Toast;
 
 import java.io.File;
@@ -18,8 +22,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Cadastro_Produto extends Activity {
-
-
     private static int FOTO_CODE = 1;
 
 
@@ -27,6 +29,7 @@ public class Cadastro_Produto extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro__produto);
+        final Database DB = new Database(this);
 
 
         //Cadastro de Produto
@@ -49,13 +52,19 @@ public class Cadastro_Produto extends Activity {
                     valorTxt =  Double.valueOf(valor.getText().toString());
 
                 //Adiciona ao banco de dados
+                Context context = getApplicationContext();
+                Database DB = new Database(context);
+                DB.insereProduto(new Produto(nomeTxt, categoriaTxt, valorTxt));
 
-                ProdutoDAO dao = ProdutoDAO.getInstance();
+                //
+                ProdutoDAO dao = ProdutoDAO.getInstance(getApplicationContext());
                 dao.adicionarProduto(new Produto(nomeTxt, categoriaTxt, valorTxt));
 
                 //Armazenamento da Foto
 
                 salvaFoto(nomeTxt);
+
+
 
                 finish();
             }

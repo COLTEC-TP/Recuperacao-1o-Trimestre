@@ -20,7 +20,7 @@ public class MainActivityAdapter extends BaseAdapter {
 
     public MainActivityAdapter(Context context) {
         this.context = context;
-        ProdutoDAO DAO = ProdutoDAO.getInstance();
+        ProdutoDAO DAO = ProdutoDAO.getInstance(context);
 
         produtos = DAO.getProdutos();
 

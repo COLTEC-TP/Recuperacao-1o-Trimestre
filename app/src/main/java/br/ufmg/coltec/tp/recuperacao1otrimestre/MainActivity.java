@@ -2,6 +2,7 @@ package br.ufmg.coltec.tp.recuperacao1otrimestre;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,7 +51,9 @@ public class MainActivity extends Activity {
                 alertBuilder.setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        ProdutoDAO dao = ProdutoDAO.getInstance();
+
+                        ProdutoDAO dao = ProdutoDAO.getInstance(getApplicationContext());
+
                         dao.removerProduto(position);
                         MainActivity.this.adapter.notifyDataSetChanged();
                     }
@@ -112,7 +115,7 @@ public class MainActivity extends Activity {
 
             @Override
             public boolean onQueryTextChange(String s) { //durante a digitação do usuário filtra e seta a ListView com o resultado da busca
-                ArrayList<Produto> listaFiltrada = ProdutoDAO.getInstance().filtrarProdutos(s);
+                ArrayList<Produto> listaFiltrada = ProdutoDAO.getInstance(getApplicationContext()).filtrarProdutos(s);
                 mostraBusca(listaFiltrada);
                 return false;
             }
@@ -128,7 +131,8 @@ public class MainActivity extends Activity {
     }
 
 
-}
+
 
 }
+
 
