@@ -27,18 +27,7 @@ public class MainActivity extends Activity {
         ProdutosListView.setAdapter(adapter);
 
 
-//Parte lógica do acionamento do botão de "adcionar"
-//da lista principal
 
-        Button adcionar_produto = findViewById(R.id.Btn_adcionar);
-
-        adcionar_produto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Cadastro_Produto.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
@@ -48,10 +37,24 @@ public class MainActivity extends Activity {
         MainActivity.this.adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                // inicia a activity Cadastro_Produto quando o usuário clica no botão correspondente
+                Intent intent = new Intent(MainActivity.this, Cadastro_Produto.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // infla menu na tela
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem item = menu.findItem(R.id.action_search);
@@ -59,17 +62,23 @@ public class MainActivity extends Activity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                ArrayList<Produto> listaFiltrada = ProdutoDAO.getInstance().filtrarProdutos(s);
-
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-
+            public boolean onQueryTextChange(String s) { //durante a digitação do usuário filtra e seta a ListView com o resultado da busca
+                ArrayList<Produto> listaFiltrada = ProdutoDAO.getInstance().filtrarProdutos(s);
+                mostraBusca(listaFiltrada);
                 return false;
             }
+
+
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void mostraBusca(ArrayList<Produto> produtos) {
+        ListView auxList = findViewById(R.id.lista_produtos);
+        auxList.setAdapter(new MainActivityAdapter(this, produtos));
     }
 }

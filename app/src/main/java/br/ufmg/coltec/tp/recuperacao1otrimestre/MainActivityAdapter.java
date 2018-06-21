@@ -24,6 +24,15 @@ public class MainActivityAdapter extends BaseAdapter {
 
     }
 
+
+    public MainActivityAdapter(Context context, ArrayList<Produto> prods) {
+        this.context = context;
+        produtos = prods;
+
+        //... seta o ListView com um Array de produtos arbitrário
+
+    }
+
     @Override
     public int getCount() {
         return this.produtos.size();
