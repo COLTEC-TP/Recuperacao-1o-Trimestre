@@ -16,11 +16,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="4dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:text="Salvar Foto"
-        android:id="@+id/Btn_SalvaFoto"/>
 
     <TextView
         android:layout_width="wrap_content"

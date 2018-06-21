@@ -19,8 +19,8 @@ import java.io.IOException;
 
 public class Cadastro_Produto extends Activity {
 
+
     private static int FOTO_CODE = 1;
-    private static final String filename = "foto.png";
 
 
     @Override
@@ -28,37 +28,6 @@ public class Cadastro_Produto extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro__produto);
 
-        final File file = new File(this.getExternalFilesDir(Environment.DIRECTORY_DCIM), filename);  // /storage/0/android/data/package/files/dcim/foto.png
-        final ImageView foto = findViewById(R.id.foto);
-        Button Btn_SalvaFoto = findViewById(R.id.Btn_SalvaFoto);
-
-
-        //Armazenamento da Foto
-
-        Btn_SalvaFoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bitmap bm=((BitmapDrawable)foto.getDrawable()).getBitmap(); //Extrair foto do imageview
-
-                FileOutputStream out = null;
-                try {
-
-                    out = new FileOutputStream(file);
-                    bm.compress(Bitmap.CompressFormat.PNG, 100, out); // PNG is a lossless format, the compression factor (100) is ignored
-                } catch (Exception e) {
-                    e.printStackTrace();
-
-                } finally {
-                    try {
-                        if (out != null) {
-                            out.close();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
 
         //Cadastro de Produto
 
@@ -84,6 +53,10 @@ public class Cadastro_Produto extends Activity {
                 ProdutoDAO dao = ProdutoDAO.getInstance();
                 dao.adicionarProduto(new Produto(nomeTxt, categoriaTxt, valorTxt));
 
+                //Armazenamento da Foto
+
+                salvaFoto(nomeTxt);
+
                 finish();
             }
 
@@ -92,6 +65,37 @@ public class Cadastro_Produto extends Activity {
 
     }
 
+    private void salvaFoto(String nome) {
+        final ImageView foto = findViewById(R.id.foto);
+        final String filename = nome+".png";
+        final File file = new File(this.getExternalFilesDir(Environment.DIRECTORY_DCIM), filename);  // /storage/0/android/data/package/files/dcim/foto.png
+
+
+        if(((BitmapDrawable)foto.getDrawable())!=null){
+
+            Bitmap bm=((BitmapDrawable)foto.getDrawable()).getBitmap(); //Extrair foto do imageview
+
+            FileOutputStream out = null;
+            try {
+
+                out = new FileOutputStream(file);
+                bm.compress(Bitmap.CompressFormat.PNG, 100, out);
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            } finally {
+                try {
+                    if (out != null) {
+                        out.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+    }
 
     //Parte lógica da foto tirada do produto na tela de cadastro
     //através do click no espaço da foto
@@ -104,6 +108,7 @@ public class Cadastro_Produto extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         ImageView imageView = findViewById(R.id.foto);
+
 
         if (requestCode == FOTO_CODE && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");

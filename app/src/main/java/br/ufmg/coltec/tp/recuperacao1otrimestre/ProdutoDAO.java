@@ -32,9 +32,9 @@ public class ProdutoDAO {
     }
     private void carregaProdutos() {
     /*Aqui as informações serão recuperadas do banco de dados*/
-        produtos.add(new Produto("Sabão", "Limpeza", 15.54));
-        produtos.add(new Produto("Escova de dentes", "Higiene", 3.7));
-        produtos.add(new Produto("Escova de dentes", "Higiene", 3.7));
+//        produtos.add(new Produto("Sabão", "Limpeza", 15.54));
+//        produtos.add(new Produto("Escova de dentes", "Higiene", 3.7));
+//        produtos.add(new Produto("Escova de dentes", "Higiene", 3.7));
 
     }
 
