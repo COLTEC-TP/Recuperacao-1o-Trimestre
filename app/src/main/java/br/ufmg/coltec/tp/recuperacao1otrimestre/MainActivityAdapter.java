@@ -1,10 +1,14 @@
 package br.ufmg.coltec.tp.recuperacao1otrimestre;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -57,10 +61,13 @@ public class MainActivityAdapter extends BaseAdapter {
         TextView nome = newView.findViewById(R.id.nomeProduto);
         TextView categoria = newView.findViewById(R.id.categoriaProduto);
         TextView valor = newView.findViewById(R.id.valorProduto);
+        ImageView foto = newView.findViewById(R.id.imagemProduto);
 
         nome.setText(prod.getNome());
         categoria.setText(prod.getCategoria());
         valor.setText(String.format("%s%s", "R$", String.valueOf(prod.getPreco())));
+        Bitmap bitmap = BitmapFactory.decodeFile(this.context.getExternalFilesDir(Environment.DIRECTORY_DCIM).getPath()+"/"+prod.getNome()+".png");
+        foto.setImageBitmap(bitmap);
 
         return newView;
     }

@@ -5,8 +5,7 @@
     android:padding="20dp">
     <ImageView
         android:id="@+id/imagemProduto"
-        android:src="@mipmap/ic_launcher"
-
+        android:background="@mipmap/ic_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
