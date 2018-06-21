@@ -24,6 +24,7 @@ public class MainActivityAdapter extends BaseAdapter {
 
     }
 
+
     public MainActivityAdapter(Context context, ArrayList<Produto> prods) {
         this.context = context;
         produtos = prods;
