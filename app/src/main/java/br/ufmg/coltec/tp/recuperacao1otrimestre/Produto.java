@@ -5,11 +5,7 @@ public class Produto {
     private String nome;
     private String categoria;
     private double preco;
-    /* Eu decidi que será obrigatório na criação do produto
-     que o usuário defina todas as informações.
-     Sendo assim, não haverá edição posterior e portanto
-     os sets não são necessários.
-     */
+
 
     public Produto(String nome, String categoria, double preco ){
         this.nome=nome;

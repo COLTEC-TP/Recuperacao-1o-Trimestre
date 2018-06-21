@@ -35,6 +35,7 @@ public class MainActivity extends Activity {
         ProdutosListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
 
+
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
@@ -70,6 +71,7 @@ public class MainActivity extends Activity {
                 return true;
             }
         });
+
 
 
     }
@@ -125,4 +127,8 @@ public class MainActivity extends Activity {
         auxList.setAdapter(new MainActivityAdapter(this, produtos));
     }
 
+
 }
+
+}
+

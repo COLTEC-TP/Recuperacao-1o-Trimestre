@@ -38,6 +38,7 @@ public class ProdutoDAO {
 
     }
 
+
     /**
      * Adiciona um novo produto na lista
      *
@@ -65,6 +66,21 @@ public class ProdutoDAO {
      */
     public ArrayList<Produto> getProdutos() {
         return instance.produtos;
+    }
+
+    /**
+     * @param busca expressão buscada oelo usuário
+     * @return ArrayList apenas cuja categoria ou nome correspondem ao buscado pelo usuário
+     */
+    public ArrayList<Produto> filtrarProdutos(String busca) {
+        ArrayList<Produto> filtrados = new ArrayList<>();
+
+        for(int i=0;i<produtos.size();i++){
+            if(produtos.get(i).getNome().toLowerCase().contains(busca.toLowerCase()) || produtos.get(i).getCategoria().toLowerCase().contains(busca.toLowerCase())){
+                filtrados.add(produtos.get(i));
+            }
+        }
+        return filtrados;
     }
 
     /**
