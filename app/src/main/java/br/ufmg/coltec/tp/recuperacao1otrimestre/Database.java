@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Database extends SQLiteOpenHelper {
     private static String DB_NAME = "Database.sqlite";
     private static final int DB_VERSION = 1;
-    private static final String SCRIPT_CREATE ="CREATE TABLE IF EXISTS produtos (nome TEXT, categoria TEXT, preco REAL);";
+    private static final String SCRIPT_CREATE ="CREATE TABLE IF NOT EXISTS produtos (nome TEXT, categoria TEXT, preco REAL);";
 
     //"id INTEGER PRIMARY KEY AUTOINCREMENT, " +
     public Database(Context context) {

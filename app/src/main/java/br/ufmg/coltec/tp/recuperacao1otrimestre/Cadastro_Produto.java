@@ -47,22 +47,29 @@ public class Cadastro_Produto extends Activity {
                 String categoriaTxt = categoria.getText().toString();
 
                 Double valorTxt = 0.0;
-
                 if(!valor.getText().toString().equals(""))
                     valorTxt =  Double.valueOf(valor.getText().toString());
 
+                ProdutoDAO dao = ProdutoDAO.getInstance(getApplicationContext());
+
                 //Adiciona ao banco de dados
                 Context context = getApplicationContext();
-                Database DB = new Database(context);
-                DB.insereProduto(new Produto(nomeTxt, categoriaTxt, valorTxt));
 
-                //
-                ProdutoDAO dao = ProdutoDAO.getInstance(getApplicationContext());
-                dao.adicionarProduto(new Produto(nomeTxt, categoriaTxt, valorTxt));
+                if(!dao.existeNome(nomeTxt)){//não existe esse nome na lista
+                    Database DB = new Database(context);
+                    //adiciona no banco de dados
+                    DB.insereProduto(new Produto(nomeTxt, categoriaTxt, valorTxt));
 
-                //Armazenamento da Foto
+                    //adiciona da ArrayList DAO
+                    dao.adicionarProduto(new Produto(nomeTxt, categoriaTxt, valorTxt));
 
-                salvaFoto(nomeTxt);
+                    //Armazenamento da Foto
+                    salvaFoto(nomeTxt);
+                }else{
+                    Toast toast = Toast.makeText(context, "Já existe um produto com esse nome", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
 
 
 

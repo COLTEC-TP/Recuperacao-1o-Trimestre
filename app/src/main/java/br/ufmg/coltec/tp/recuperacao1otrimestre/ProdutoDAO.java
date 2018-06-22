@@ -1,6 +1,7 @@
 package br.ufmg.coltec.tp.recuperacao1otrimestre;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -71,6 +72,18 @@ public class ProdutoDAO{
      */
     public ArrayList<Produto> getProdutos() {
         return instance.produtos;
+    }
+
+
+
+    //verifica se não existe nenhum produto com o mesmo nome
+    public boolean existeNome(String nome) {
+        for (int i = 0; i < produtos.size(); i++) {
+            if (nome.toLowerCase().equals(produtos.get(i).getNome().toLowerCase())){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
