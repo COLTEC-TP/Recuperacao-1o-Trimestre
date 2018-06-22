@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +55,7 @@ public class MainActivity extends Activity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         ProdutoDAO dao = ProdutoDAO.getInstance(getApplicationContext());
                         Database DB = new Database(getApplicationContext());
-
+                        removeFoto(dao.getProdutos().get(position));
                         DB.removeProduto(dao.getProdutos().get(position));//remove da DB o produto especificado
                         dao.removerProduto(position);//remove da ListView o produto especificado
                         MainActivity.this.adapter.notifyDataSetChanged();
@@ -79,7 +81,10 @@ public class MainActivity extends Activity {
 
 
     }
-
+    private void removeFoto(Produto produto){
+        File file = new File(this.getExternalFilesDir(Environment.DIRECTORY_DCIM), produto.getNome()+".png");
+        file.delete();
+    }
     @Override
     protected void onResume() {
         super.onResume();
