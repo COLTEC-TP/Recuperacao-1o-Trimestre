@@ -37,7 +37,19 @@ public class Database extends SQLiteOpenHelper {
         } finally {
             db.close();
         }
-        db.close();
+
+
+    }
+    public void removeProduto(Produto produto) {
+        SQLiteDatabase db = getWritableDatabase();
+//        db.delete(DB_NAME+".produtos", DB_NAME+".nome = "+produto.getNome(), null);
+        try{
+            db.execSQL("DELETE FROM " + "produtos" + " WHERE " + "nome" + "= '" + produto.getNome() + "'");
+
+        }catch (Exception e){
+        }finally {
+            db.close();
+        }
 
     }
 

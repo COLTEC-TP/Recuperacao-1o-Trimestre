@@ -51,10 +51,11 @@ public class MainActivity extends Activity {
                 alertBuilder.setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
                         ProdutoDAO dao = ProdutoDAO.getInstance(getApplicationContext());
+                        Database DB = new Database(getApplicationContext());
 
-                        dao.removerProduto(position);
+                        DB.removeProduto(dao.getProdutos().get(position));//remove da DB o produto especificado
+                        dao.removerProduto(position);//remove da ListView o produto especificado
                         MainActivity.this.adapter.notifyDataSetChanged();
                     }
                 });
